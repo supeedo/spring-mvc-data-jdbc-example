@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/show-all-employees"})
+@WebServlet(urlPatterns = {"/show-all-employees"}, name = "allEmployee")
 public class ShowAllEmployees extends HttpServlet {
 
     @Override
