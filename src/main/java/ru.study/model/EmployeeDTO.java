@@ -3,20 +3,20 @@ package ru.study.model;
 import java.util.Objects;
 
 public class EmployeeDTO {
-    public Long id;
-    public String firstName;
-    public String lastName;
-    public String role;
+    private final long id;
+    private final String firstName;
+    private final String lastName;
+    private final String role;
 
 
-    public EmployeeDTO(Long id, String firstName, String lastName, String role) {
+    public EmployeeDTO(long id, String firstName, String lastName, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

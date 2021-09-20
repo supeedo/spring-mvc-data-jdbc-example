@@ -1,7 +1,7 @@
 package ru.study.servlets;
 
 import ru.study.model.EmployeeDTO;
-import ru.study.service.EmployeeService;
+import ru.study.service.EmployeeServiceImpl;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,7 +17,7 @@ public class ShowAllEmployees extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<EmployeeDTO> employees = new EmployeeService().getAllEmp();
+        List<EmployeeDTO> employees = new EmployeeServiceImpl().getAllEmp();
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("/WEB-INF/view/allEmployees.jsp").forward(req, resp);
     }

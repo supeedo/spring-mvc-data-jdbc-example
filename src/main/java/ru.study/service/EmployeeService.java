@@ -1,18 +1,11 @@
 package ru.study.service;
 
 import ru.study.model.EmployeeDTO;
-import ru.study.repository.EmployeeRepositoryCSVImpl;
+
 import java.util.List;
 
-public class EmployeeService {
-
-    private final EmployeeRepositoryCSVImpl empRepo;
-
-    public EmployeeService() {
-        this.empRepo = new EmployeeRepositoryCSVImpl();
-    }
-
-    public List<EmployeeDTO> getAllEmp(){
-        return  empRepo.getData();
-    }
+public interface EmployeeService {
+    List<EmployeeDTO> getAllEmp();
+    List<EmployeeDTO> getEmpByRole(String role);
+    EmployeeDTO getEmpById(long id);
 }
