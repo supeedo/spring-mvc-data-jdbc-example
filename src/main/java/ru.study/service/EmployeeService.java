@@ -1,20 +1,18 @@
 package ru.study.service;
 
 import ru.study.model.EmployeeDTO;
-
-import java.util.ArrayList;
+import ru.study.repository.EmployeeRepositoryCSVImpl;
 import java.util.List;
 
 public class EmployeeService {
 
+    private final EmployeeRepositoryCSVImpl empRepo;
+
+    public EmployeeService() {
+        this.empRepo = new EmployeeRepositoryCSVImpl();
+    }
+
     public List<EmployeeDTO> getAllEmp(){
-        return     new ArrayList<EmployeeDTO>(){
-            {
-                add(new EmployeeDTO(1L, "Иван", "Иванов", "Java developer"));
-                add(new EmployeeDTO(2L, "Петр", "Петров", "Java developer"));
-                add(new EmployeeDTO(3L, "Игорь", "Казанцев", "Java developer"));
-                add(new EmployeeDTO(4L, "Сергей", "Кузнецов", "Java developer"));
-                add(new EmployeeDTO(5L, "Александр", "Александров", "Java developer"));
-            }};
+        return  empRepo.getData();
     }
 }
