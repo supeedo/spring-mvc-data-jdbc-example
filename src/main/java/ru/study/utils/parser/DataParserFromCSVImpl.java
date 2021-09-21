@@ -11,6 +11,11 @@ import java.util.List;
 public class DataParserFromCSVImpl implements DataParser{
     private static final Logger logger = LoggerFactory.getLogger(DataParserFromCSVImpl.class);
 
+    /**
+     * Парсер исходников из файлы с данными в список объектов
+     * @param records Данные чтения CSV-файла
+     * @return Список ДТО-объектов
+     */
     @Override
     public List<EmployeeDTO> parseDataInList(Iterable<CSVRecord> records) {
         logger.info("Parse from database and create employees");
