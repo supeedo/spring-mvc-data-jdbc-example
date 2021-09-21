@@ -1,6 +1,10 @@
 package ru.study.servlets;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.study.model.EmployeeDTO;
+import ru.study.repository.EmployeeRepositoryCSVImpl;
+import ru.study.service.EmployeeService;
 import ru.study.service.EmployeeServiceImpl;
 
 import javax.servlet.ServletConfig;
@@ -14,10 +18,14 @@ import java.util.List;
 
 @WebServlet(urlPatterns = {"/show-all-employees"}, name = "allEmployee")
 public class ShowAllEmployees extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ShowAllEmployees.class);
+    private EmployeeService service;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<EmployeeDTO> employees = new EmployeeServiceImpl().getAllEmp();
+        logger.debug("Полученные запросы: {}, {}", req, resp);
+        final List<EmployeeDTO> employees = service.getAllEmp();
+        logger.debug("Получен список: {}", employees);
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("/WEB-INF/view/allEmployees.jsp").forward(req, resp);
     }
@@ -25,5 +33,6 @@ public class ShowAllEmployees extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+        service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl());
     }
 }

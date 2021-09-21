@@ -8,8 +8,8 @@ import ru.study.model.EmployeeDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataParserImpl implements DataParser{
-    private static final Logger logger = LoggerFactory.getLogger(DataParserImpl.class);
+public class DataParserFromCSVImpl implements DataParser{
+    private static final Logger logger = LoggerFactory.getLogger(DataParserFromCSVImpl.class);
 
     @Override
     public List<EmployeeDTO> parseDataInList(Iterable<CSVRecord> records) {
@@ -17,7 +17,7 @@ public class DataParserImpl implements DataParser{
         List<EmployeeDTO> employeesDTOList = new ArrayList<>();
         for (CSVRecord record : records)
             employeesDTOList.add(new EmployeeDTO(
-                    Long.valueOf(record.get(0)),
+                    Long.parseLong(record.get(0)),
                     record.get(1),
                     record.get(2),
                     record.get(3)

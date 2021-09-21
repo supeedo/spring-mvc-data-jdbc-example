@@ -8,7 +8,7 @@ import ru.study.exceptions.ResourceException;
 import ru.study.model.EmployeeDTO;
 import ru.study.utils.PropertyLoader;
 import ru.study.utils.parser.DataParser;
-import ru.study.utils.parser.DataParserImpl;
+import ru.study.utils.parser.DataParserFromCSVImpl;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -20,13 +20,13 @@ import static ru.study.exceptions.ResourceException.ErrorCode.READING_FROM_DATAB
 
 public class EmployeeRepositoryCSVImpl implements EmployeeRepository {
     private static final Logger log = LoggerFactory.getLogger(EmployeeRepositoryCSVImpl.class);
+
     private final String dataLink;
     private final DataParser dataParser;
 
     public EmployeeRepositoryCSVImpl() {
-      this.dataLink =  PropertyLoader.getProperty().getProperty("db.employee.url");
-        this.dataParser = new DataParserImpl();
-        System.out.println(dataLink);
+        this.dataLink = PropertyLoader.getProperty().getProperty("db.employee.url");
+        this.dataParser = new DataParserFromCSVImpl();
     }
 
 
