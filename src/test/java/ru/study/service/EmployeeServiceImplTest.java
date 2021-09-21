@@ -1,10 +1,7 @@
 package ru.study.service;
 
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
 import ru.study.model.EmployeeDTO;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
@@ -39,6 +36,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
+    @DisplayName("Получение списка всех сотрудников")
     public void testGetAllEmp() {
         final List<EmployeeDTO> actualEmpList = service.getAllEmp();
         Assertions.assertThat(actualEmpList)
@@ -50,6 +48,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
+    @DisplayName("Получение списка сотрудников по роли")
     public void testGetEmpByRole() {
         final List<EmployeeDTO> expectedEmpListByRole = expectedEmpList
                 .stream()
@@ -65,6 +64,7 @@ public class EmployeeServiceImplTest {
     }
 
     @Test
+    @DisplayName("Получение списка сотрудников по id")
     public void testGetEmpById() {
         final EmployeeDTO actualEmp = service.getEmpById(FIRST_EMPLOYEE_ID);
         Assertions.assertThat(actualEmp)
