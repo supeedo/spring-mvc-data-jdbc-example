@@ -5,10 +5,9 @@ import org.apache.commons.csv.CSVRecord;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.study.exceptions.ResourceException;
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 import ru.study.utils.PropertyLoader;
 import ru.study.utils.parser.DataParser;
-import ru.study.utils.parser.DataParserFromCSVImpl;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -31,8 +30,8 @@ public class EmployeeRepositoryCSVImpl implements EmployeeRepository {
 
 
     @Override
-    public List<EmployeeDTO> getData() {
-        List<EmployeeDTO> questionDTOList;
+    public List<Employee> getData() {
+        List<Employee> questionDTOList;
         try (Reader in = new FileReader(getAbsolutePathToDataFile(dataLink))) {
             Iterable<CSVRecord> records = CSVFormat.DEFAULT.parse(in);
             log.info("Information received from the database = {}", records);

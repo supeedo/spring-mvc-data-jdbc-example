@@ -2,7 +2,7 @@ package ru.study.servlets;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
 import ru.study.service.EmployeeService;
 import ru.study.service.EmployeeServiceImpl;
@@ -25,7 +25,7 @@ public class ShowAllEmployees extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.debug("Полученные запросы: {}, {}", req, resp);
-        final List<EmployeeDTO> employees = service.getAllEmp();
+        final List<Employee> employees = service.getAllEmp();
         logger.debug("Получен список: {}", employees);
         req.setAttribute("employees", employees);
         req.getRequestDispatcher("/WEB-INF/view/allEmployees.jsp").forward(req, resp);

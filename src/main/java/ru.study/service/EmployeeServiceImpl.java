@@ -3,7 +3,7 @@ package ru.study.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.study.exceptions.ResourceException;
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepository;
 
 import java.util.List;
@@ -18,12 +18,12 @@ public class EmployeeServiceImpl implements EmployeeService {
         this.empRepo = empRepo;
     }
 
-    public List<EmployeeDTO> getAllEmp() {
+    public List<Employee> getAllEmp() {
         return empRepo.getData();
     }
 
     @Override
-    public List<EmployeeDTO> getEmpByRole(final String role) {
+    public List<Employee> getEmpByRole(final String role) {
         logger.debug("Запрос по роли: {}", role);
         return empRepo.getData()
                 .stream()
@@ -32,12 +32,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeDTO getEmpById(final long id) throws ResourceException {
+    public Employee getEmpById(final long id) throws ResourceException {
         logger.debug("Запрос по id: {}", id);
         return empRepo.getData()
                 .stream()
                 .filter(x -> x.getId() == id)
                 .findAny()
-                .orElse(new EmployeeDTO(0, "", "", ""));
+                .orElse(new Employee(0, "", "", ""));
     }
 }

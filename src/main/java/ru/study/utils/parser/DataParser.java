@@ -1,10 +1,10 @@
 package ru.study.utils.parser;
 
 import org.apache.commons.csv.CSVRecord;
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 
 import java.util.List;
 
 public interface DataParser {
-    List<EmployeeDTO> parseDataInList(Iterable<CSVRecord> records);
+    List<Employee> parseDataInList(Iterable<CSVRecord> records);
 }

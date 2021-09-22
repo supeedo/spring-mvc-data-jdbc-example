@@ -1,9 +1,9 @@
 package ru.study.repository;
 
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 
 import java.util.List;
 
 public interface EmployeeRepository {
-    List<EmployeeDTO> getData();
+    List<Employee> getData();
 }

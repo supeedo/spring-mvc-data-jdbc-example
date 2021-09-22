@@ -2,14 +2,14 @@ package ru.study.model;
 
 import java.util.Objects;
 
-public class EmployeeDTO {
+public class Employee {
     private final long id;
     private final String firstName;
     private final String lastName;
     private final String role;
 
 
-    public EmployeeDTO(long id, String firstName, String lastName, String role) {
+    public Employee(long id, String firstName, String lastName, String role) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -46,7 +46,7 @@ public class EmployeeDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EmployeeDTO that = (EmployeeDTO) o;
+        Employee that = (Employee) o;
         return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(role, that.role);
     }
 

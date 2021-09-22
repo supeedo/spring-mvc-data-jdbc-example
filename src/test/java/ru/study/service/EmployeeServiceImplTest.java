@@ -3,7 +3,7 @@ package ru.study.service;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
-import ru.study.model.EmployeeDTO;
+import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
 
 import java.util.ArrayList;
@@ -18,14 +18,14 @@ public class EmployeeServiceImplTest {
     private final static int LIST_OF_EMPLOYEE_SIZE_WITH_FILTER = 1;
     private final static String FIRST_EMPLOYEE_ROLE = "QA";
     private final static String SECOND_EMPLOYEE_ROLE = "Java developer";
-    private static final List<EmployeeDTO> expectedEmpList = new ArrayList<>();
+    private static final List<Employee> expectedEmpList = new ArrayList<>();
     private EmployeeRepositoryCSVImpl empRepo;
     private EmployeeServiceImpl service;
 
     @BeforeAll
     public void addToList(){
-        expectedEmpList.add(new EmployeeDTO(FIRST_EMPLOYEE_ID, "Иванов", "Иван", FIRST_EMPLOYEE_ROLE));
-        expectedEmpList.add(new EmployeeDTO(SECOND_EMPLOYEE_ID, "Петров", "Петр", SECOND_EMPLOYEE_ROLE));
+        expectedEmpList.add(new Employee(FIRST_EMPLOYEE_ID, "Иванов", "Иван", FIRST_EMPLOYEE_ROLE));
+        expectedEmpList.add(new Employee(SECOND_EMPLOYEE_ID, "Петров", "Петр", SECOND_EMPLOYEE_ROLE));
     }
 
     @BeforeEach
@@ -38,7 +38,7 @@ public class EmployeeServiceImplTest {
     @Test
     @DisplayName("Получение списка всех сотрудников")
     public void testGetAllEmp() {
-        final List<EmployeeDTO> actualEmpList = service.getAllEmp();
+        final List<Employee> actualEmpList = service.getAllEmp();
         Assertions.assertThat(actualEmpList)
                 .isNotNull()
                 .isNotEmpty()
@@ -50,11 +50,11 @@ public class EmployeeServiceImplTest {
     @Test
     @DisplayName("Получение списка сотрудников по роли")
     public void testGetEmpByRole() {
-        final List<EmployeeDTO> expectedEmpListByRole = expectedEmpList
+        final List<Employee> expectedEmpListByRole = expectedEmpList
                 .stream()
                 .filter(x -> x.getRole().equals(FIRST_EMPLOYEE_ROLE))
                 .collect(Collectors.toList());
-        final List<EmployeeDTO> actualEmpList = service.getEmpByRole(FIRST_EMPLOYEE_ROLE);
+        final List<Employee> actualEmpList = service.getEmpByRole(FIRST_EMPLOYEE_ROLE);
         Assertions.assertThat(actualEmpList)
                 .isNotNull()
                 .isNotEmpty()
@@ -66,7 +66,7 @@ public class EmployeeServiceImplTest {
     @Test
     @DisplayName("Получение списка сотрудников по id")
     public void testGetEmpById() {
-        final EmployeeDTO actualEmp = service.getEmpById(FIRST_EMPLOYEE_ID);
+        final Employee actualEmp = service.getEmpById(FIRST_EMPLOYEE_ID);
         Assertions.assertThat(actualEmp)
                 .isNotNull()
                 .isEqualTo(expectedEmpList.get(0))
