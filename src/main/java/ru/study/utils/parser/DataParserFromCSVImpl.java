@@ -18,7 +18,7 @@ public class DataParserFromCSVImpl implements DataParser{
      */
     @Override
     public List<Employee> parseDataInList(Iterable<CSVRecord> records) {
-        logger.info("Parse from database and create employees");
+        logger.debug("Parse from database and create employees = {}", records);
         List<Employee> employeesDTOList = new ArrayList<>();
         for (CSVRecord record : records)
             employeesDTOList.add(new Employee(
