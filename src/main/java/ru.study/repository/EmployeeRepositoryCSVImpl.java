@@ -24,9 +24,9 @@ public class EmployeeRepositoryCSVImpl implements EmployeeRepository {
     private final String dataLink;
     private final DataParser dataParser;
 
-    public EmployeeRepositoryCSVImpl() {
+    public EmployeeRepositoryCSVImpl(DataParser parser) {
         this.dataLink = PropertyLoader.getProperty().getProperty("db.employee.url");
-        this.dataParser = new DataParserFromCSVImpl();
+        this.dataParser = parser;
     }
 
 

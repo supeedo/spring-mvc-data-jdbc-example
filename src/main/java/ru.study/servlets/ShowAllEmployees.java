@@ -6,6 +6,7 @@ import ru.study.model.EmployeeDTO;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
 import ru.study.service.EmployeeService;
 import ru.study.service.EmployeeServiceImpl;
+import ru.study.utils.parser.DataParserFromCSVImpl;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -33,6 +34,6 @@ public class ShowAllEmployees extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl());
+        service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl(new DataParserFromCSVImpl()));
     }
 }
