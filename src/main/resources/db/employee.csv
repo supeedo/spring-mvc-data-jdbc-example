@@ -1,5 +1,6 @@
-1,Иван,Иванов,Java developer
+id,firstName,lastName,role
+1,Иван,Иванов,Python developer
 2,Петр,Петров,Java developer
-3,Игорь,Казанцев,Java developer
+3,Игорь,Казанцев,Lead
 4,Сергей,Кузнецов,Java developer
-5,Александр,Александров,Java developer
+5,Александр,Александров,QA

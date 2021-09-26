@@ -1,13 +1,24 @@
 package ru.study.model;
 
+import com.opencsv.bean.CsvBindByName;
+
 import java.util.Objects;
 
 public class Employee {
-    private final long id;
-    private final String firstName;
-    private final String lastName;
-    private final String role;
+    @CsvBindByName(column = "id")
+    private long id;
 
+    @CsvBindByName(column = "firstName")
+    private String firstName;
+
+    @CsvBindByName(column = "lastName")
+    private String lastName;
+
+    @CsvBindByName(column = "role")
+    private String role;
+
+    public Employee() {
+    }
 
     public Employee(long id, String firstName, String lastName, String role) {
         this.id = id;
@@ -30,6 +41,22 @@ public class Employee {
 
     public String getRole() {
         return role;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
