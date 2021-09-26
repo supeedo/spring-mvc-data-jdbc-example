@@ -6,7 +6,9 @@ import ru.study.exceptions.ResourceException;
 import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepository;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 public class EmployeeServiceImpl implements EmployeeService {
@@ -39,5 +41,17 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .filter(x -> x.getId() == id)
                 .findAny()
                 .orElse(new Employee(0, "", "", ""));
+    }
+
+    public void addEmp(Employee employee) {
+        logger.debug("Добавлен объект: {}", employee);
+        AtomicLong id = new AtomicLong();
+        List<Employee> employees = empRepo.getData();
+        employees.stream()
+                .max(Comparator.comparing(Employee::getId))
+                .ifPresent(x -> id.set(x.getId() + 1));
+        employee.setId(id.get());
+        employees.add(employee);
+        empRepo.setData(employees);
     }
 }
