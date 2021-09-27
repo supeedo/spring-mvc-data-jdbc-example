@@ -29,7 +29,7 @@ public class EmployeeRepositoryCSVImpl implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getData() {
+    public List<Employee> getListOfModel() {
         List<Employee> employees;
         try (Reader reader = new BufferedReader(new FileReader(getAbsolutePathToDataFile(dataLink)))) {
             employees = new CsvToBeanBuilder<Employee>(reader)
@@ -46,7 +46,7 @@ public class EmployeeRepositoryCSVImpl implements EmployeeRepository {
     }
 
     @Override
-    public void setData(List<Employee> list) {
+    public void setListOfModel(List<Employee> list) {
         try (Writer writer = new FileWriter(getAbsolutePathToDataFile(dataLink))) {
             StatefulBeanToCsv<Employee> sbc = new StatefulBeanToCsvBuilder<Employee>(writer)
                     .withSeparator(DEFAULT_SEPARATOR)

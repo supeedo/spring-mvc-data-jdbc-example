@@ -31,7 +31,7 @@ public class EmployeeServiceImplTest {
     @BeforeEach
     void setUp() {
         empRepo = Mockito.mock(EmployeeRepositoryCSVImpl.class);
-        Mockito.when(empRepo.getData()).thenReturn(expectedEmpList);
+        Mockito.when(empRepo.getListOfModel()).thenReturn(expectedEmpList);
         service = new EmployeeServiceImpl(empRepo);
     }
 
