@@ -24,6 +24,7 @@ public class ResourceException extends RuntimeException {
 
     public enum ErrorCode {
         READING_FROM_DATABASE_ERROR,
+        WRITING_TO_DATABASE_ERROR,
         CONSOLE_READING_ERROR,
         FILE_READING_ERROR
     }

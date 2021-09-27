@@ -27,6 +27,6 @@
         </tbody>
     </c:forEach>
 </table>
-
+<p><a href="add-employees">Add Employee</a></p>
 </body>
 </html>

@@ -23,21 +23,21 @@ public class EmployeeServiceImplTest {
     private EmployeeServiceImpl service;
 
     @BeforeAll
-    public void addToList(){
-        expectedEmpList.add(new Employee(FIRST_EMPLOYEE_ID, "Иванов", "Иван", FIRST_EMPLOYEE_ROLE));
-        expectedEmpList.add(new Employee(SECOND_EMPLOYEE_ID, "Петров", "Петр", SECOND_EMPLOYEE_ROLE));
+    void addToList() {
+        expectedEmpList.add(new Employee(FIRST_EMPLOYEE_ID, "Иван", "Иванов", FIRST_EMPLOYEE_ROLE));
+        expectedEmpList.add(new Employee(SECOND_EMPLOYEE_ID, "Петр", "Петров", SECOND_EMPLOYEE_ROLE));
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         empRepo = Mockito.mock(EmployeeRepositoryCSVImpl.class);
-        Mockito.when(empRepo.getData()).thenReturn(expectedEmpList);
+        Mockito.when(empRepo.getListOfModel()).thenReturn(expectedEmpList);
         service = new EmployeeServiceImpl(empRepo);
     }
 
     @Test
     @DisplayName("Получение списка всех сотрудников")
-    public void testGetAllEmp() {
+    void testGetAllEmp() {
         final List<Employee> actualEmpList = service.getAllEmp();
         Assertions.assertThat(actualEmpList)
                 .isNotNull()
@@ -49,7 +49,7 @@ public class EmployeeServiceImplTest {
 
     @Test
     @DisplayName("Получение списка сотрудников по роли")
-    public void testGetEmpByRole() {
+    void testGetEmpByRole() {
         final List<Employee> expectedEmpListByRole = expectedEmpList
                 .stream()
                 .filter(x -> x.getRole().equals(FIRST_EMPLOYEE_ROLE))
@@ -65,11 +65,24 @@ public class EmployeeServiceImplTest {
 
     @Test
     @DisplayName("Получение списка сотрудников по id")
-    public void testGetEmpById() {
+    void testGetEmpById() {
         final Employee actualEmp = service.getEmpById(FIRST_EMPLOYEE_ID);
         Assertions.assertThat(actualEmp)
                 .isNotNull()
                 .isEqualTo(expectedEmpList.get(0))
                 .isNotEqualTo(expectedEmpList.get(1));
+    }
+
+    @Test
+    @DisplayName("Добавление сотрудника в список")
+    void testAddEmp() {
+        final int expectedEmpListSize = service.getAllEmp().size();
+        service.addEmp(new Employee(3, "Дмитрий", "Сидоров", FIRST_EMPLOYEE_ROLE));
+        final List<Employee> actualEmpList = service.getAllEmp();
+        Assertions.assertThat(actualEmpList)
+                .isNotNull()
+                .isNotEmpty()
+                .doesNotContainNull()
+                .hasSizeGreaterThan(expectedEmpListSize);
     }
 }
