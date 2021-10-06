@@ -32,26 +32,11 @@ public class AddEmployeeServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        boolean error = false;
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String role = req.getParameter("role");
-        if (checkEmployeeField(firstName)) {
-            req.setAttribute("errorFirstName", ERROR);
-            error = true;
-        }
-        if (checkEmployeeField(lastName)) {
-            req.setAttribute("errorLastName", ERROR);
-            error = true;
-        }
-        if(checkEmployeeField(role)){
-            req.setAttribute("errorRole", ERROR);
-            error = true;
-        }
-        if(!error) {
+        req.setCharacterEncoding("UTF-8");
+        if(!checkEmployeeField(req)) {
             final Employee employee = new Employee();
-            employee.setFirstName(firstName);
-            employee.setLastName(lastName);
+            employee.setFirstName(req.getParameter("firstName"));
+            employee.setLastName(req.getParameter("lastName"));
             employee.setRole(req.getParameter("role"));
             service.addEmp(employee);
             RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/view/allEmployees.jsp");
@@ -69,8 +54,24 @@ public class AddEmployeeServlet extends HttpServlet {
         this.service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl());
     }
 
-    boolean checkEmployeeField(String name) {
+
+
+    boolean checkEmployeeField(HttpServletRequest req) {
         String regex = "^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$";
-        return !name.matches(regex);
+        boolean error = false;
+        String name = req.getParameter("firstName");
+        if (!name.matches(regex)) {
+            req.setAttribute("errorFirstName", ERROR);
+            error = true;
+        }
+        if (!req.getParameter("lastName").matches(regex)) {
+            req.setAttribute("errorLastName", ERROR);
+            error = true;
+        }
+        if(!req.getParameter("role").matches(regex)){
+            req.setAttribute("errorRole", ERROR);
+            error = true;
+        }
+        return error;
     }
 }
