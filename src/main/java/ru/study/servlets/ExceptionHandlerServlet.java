@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/exception"}, name = "ExceptionHandler")
-public class ExceptionHandler extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
+public class ExceptionHandlerServlet extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(ExceptionHandlerServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
