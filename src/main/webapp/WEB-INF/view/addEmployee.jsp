@@ -6,31 +6,30 @@
     <title>Add new Employee</title>
 </head>
 <body>
+
+<c:forEach var="error" items="${requestScope.errorsEmp}">
+    <tbody>
+    <c:if test="${error != null}">
+    <td>
+        <p style="color:red;size: 5px">  <c:out value="${error}"/><p>
+    </td>
+    </c:if>
+    </tbody>
+</c:forEach>
+
 <fieldset>
     <form method="POST" action='add-employees' name="addEmployee" >
         First Name : <label>
         <input type="text" name="firstName"/>
     </label> <br/>
-        <c:set var="errorFN" scope="session" value="${errorFirstName}"/>
-        <c:if test="${errorFN != null}">
-        <p style="color:red;size: 5px"><c:out value="${errorFN}"/><p>
-        </c:if>
 
         Last Name : <label>
         <input type="text" name="lastName" />
     </label> <br/>
-            <c:set var="errorLN" scope="session" value="${errorLastName}"/>
-            <c:if test="${errorFN != null}">
-        <p style="color:red;size: 5px"><c:out value="${errorLN}"/><p>
-        </c:if>
 
         Role : <label>
         <input type="text" name="role"/>
     </label> <br/>
-            <c:set var="errorR" scope="session" value="${errorRole}"/>
-            <c:if test="${errorFN != null}">
-        <p style="color:red;size: 5px"><c:out value="${errorR}"/><p>
-        </c:if>
 
         <input type="submit" value="Submit"/>
     </form>
