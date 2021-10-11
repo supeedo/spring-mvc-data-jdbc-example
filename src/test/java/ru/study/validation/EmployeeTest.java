@@ -1,4 +1,4 @@
-package ru.study.model;
+package ru.study.validation;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.study.model.Employee;
 import ru.study.validation.EmployeeValidator;
 import ru.study.validation.ValidationResult;
 

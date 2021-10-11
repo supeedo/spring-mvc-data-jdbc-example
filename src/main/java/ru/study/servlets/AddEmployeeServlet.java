@@ -24,6 +24,7 @@ public class AddEmployeeServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(AddEmployeeServlet.class);
 
     private EmployeeService service;
+    private EmployeeValidator ev;
 
 
     @Override
@@ -34,7 +35,6 @@ public class AddEmployeeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        final EmployeeValidator ev = new EmployeeValidator();
         final Employee employee = new Employee();
         employee.setFirstName(req.getParameter("firstName"));
         employee.setLastName(req.getParameter("lastName"));
@@ -57,6 +57,7 @@ public class AddEmployeeServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         this.service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl());
+        this.ev = new EmployeeValidator();
     }
 
 }
