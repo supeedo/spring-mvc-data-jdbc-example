@@ -6,6 +6,7 @@ import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
 import ru.study.service.EmployeeService;
 import ru.study.service.EmployeeServiceImpl;
+import ru.study.validation.EmployeeValidator;
 import ru.study.validation.ValidationResult;
 
 import javax.servlet.RequestDispatcher;
@@ -33,11 +34,12 @@ public class AddEmployeeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        final EmployeeValidator ev = new EmployeeValidator();
         final Employee employee = new Employee();
         employee.setFirstName(req.getParameter("firstName"));
         employee.setLastName(req.getParameter("lastName"));
         employee.setRole(req.getParameter("role"));
-        final ValidationResult vr = employee.validate(employee);
+        final ValidationResult vr = ev.validate(employee);
         if (vr.isValid()) {
             service.addEmp(employee);
             RequestDispatcher view = req.getRequestDispatcher("/WEB-INF/view/allEmployees.jsp");

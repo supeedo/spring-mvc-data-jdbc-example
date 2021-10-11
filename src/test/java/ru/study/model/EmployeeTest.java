@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import ru.study.validation.EmployeeValidator;
 import ru.study.validation.ValidationResult;
 
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ class EmployeeTest {
     private static final String ERROR_ROLE = "Role must not be empty, contains only letters, and be from 2 to 23 characters long";
 
     private Employee correctEmp;
+    private EmployeeValidator ev = new EmployeeValidator();
 
     @BeforeEach
     void setUp() {
@@ -29,7 +31,7 @@ class EmployeeTest {
     @Test
     @DisplayName("Проверка валидации корректного сотрудника")
     void validateCorrectEmp() {
-        ValidationResult vr = correctEmp.validate(correctEmp);
+        ValidationResult vr = ev.validate(correctEmp);
         Assertions.assertThat(vr.isValid())
                 .isNotNull()
                 .isTrue();
@@ -43,7 +45,7 @@ class EmployeeTest {
     @MethodSource("getInvalidEmployeesData")
     void validateIncorrectEmp(String firstName, String lastName, String role) {
         final Employee invalidEmployee = new Employee(0, firstName, lastName, role);
-        ValidationResult vr = invalidEmployee.validate(invalidEmployee);
+        ValidationResult vr = ev.validate(invalidEmployee);
         Assertions.assertThat(vr.isValid())
                 .isNotNull()
                 .isFalse();
