@@ -17,6 +17,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
 
     <junit-jupiter-api.version>5.8.0</junit-jupiter-api.version>
+    <junit-jupiter-params.version>5.8.0</junit-jupiter-params.version>
     <hamcrest.version>2.2</hamcrest.version>
     <assertj-core.version>3.21.0</assertj-core.version>
     <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
@@ -45,6 +46,13 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit-jupiter-api.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit-jupiter-params.version}</version>
       <scope>test</scope>
     </dependency>
 

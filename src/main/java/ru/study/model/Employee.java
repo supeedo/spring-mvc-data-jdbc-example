@@ -4,7 +4,8 @@ import com.opencsv.bean.CsvBindByName;
 
 import java.util.Objects;
 
-public class Employee {
+public class Employee implements Model {
+
     @CsvBindByName(column = "id")
     private long id;
 
@@ -81,4 +82,5 @@ public class Employee {
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, role);
     }
+
 }
