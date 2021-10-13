@@ -27,4 +27,9 @@ public class ValidationResult {
     public void inputMessage(String message) {
         this.messages.add(message);
     }
+
+    public void merge(ValidationResult vr){
+        this.isValid = vr.isValid();
+        messages.addAll(vr.getMessages());
+    }
 }

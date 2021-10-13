@@ -17,8 +17,8 @@ import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 class EmployeeTest {
 
-    private static final String ERROR_FIRSTNAME = "First Name must not be empty, contains only letters, and be from 2 to 23 characters long";
-    private static final String ERROR_LASTNAME = "Last Name must not be empty, contains only letters, and be from 2 to 23 characters long";
+    private static final String ERROR_FIRSTNAME = "First name must not be empty, contains only letters, and be from 2 to 23 characters long";
+    private static final String ERROR_LASTNAME = "Last name must not be empty, contains only letters, and be from 2 to 23 characters long";
     private static final String ERROR_ROLE = "Role must not be empty, contains only letters, and be from 2 to 23 characters long";
 
     private Employee correctEmp;
