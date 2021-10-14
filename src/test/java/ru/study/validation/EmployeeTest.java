@@ -20,7 +20,7 @@ class EmployeeTest {
     private static final String ERROR_ROLE = "Role must not be empty, contains only letters, and be from 2 to 23 characters long";
 
     private Employee correctEmp;
-    private final EmployeeValidator ev = new EmployeeValidator();
+    private final Validator<Employee> ev = new EmployeeValidator();
 
     @BeforeEach
     void setUp() {

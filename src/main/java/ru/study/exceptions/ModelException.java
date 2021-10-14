@@ -23,6 +23,7 @@ public class ModelException extends RuntimeException {
     }
 
     public enum ErrorCode {
-        GETTING_DATA_FROM_MODEL_ERROR
+        GETTING_DATA_FROM_MODEL_ERROR,
+        MODEL_CAST_ERROR
     }
 }

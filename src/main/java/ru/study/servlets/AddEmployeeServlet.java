@@ -26,7 +26,6 @@ public class AddEmployeeServlet extends HttpServlet {
     private EmployeeService service;
     private EmployeeValidator ev;
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/view/addEmployee.jsp").forward(req, resp);
