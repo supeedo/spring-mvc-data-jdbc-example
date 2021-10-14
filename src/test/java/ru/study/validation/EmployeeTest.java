@@ -8,8 +8,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.study.model.Employee;
-import ru.study.validation.EmployeeValidator;
-import ru.study.validation.ValidationResult;
 
 import java.util.stream.Stream;
 
@@ -22,7 +20,7 @@ class EmployeeTest {
     private static final String ERROR_ROLE = "Role must not be empty, contains only letters, and be from 2 to 23 characters long";
 
     private Employee correctEmp;
-    private EmployeeValidator ev = new EmployeeValidator();
+    private final EmployeeValidator ev = new EmployeeValidator();
 
     @BeforeEach
     void setUp() {
@@ -68,7 +66,8 @@ class EmployeeTest {
                 arguments("AB", "AB", "AB"),
                 arguments("1", "2", "3"),
                 arguments("123", "234", "345"),
-                arguments("qwertyuiop[]asdfghjkl;'zc", "qwertyuiop[]asdfghjkl;'zc", "qwertyuiop[]asdfghjkl;'zc")
+                arguments("qwertyuiop[]asdfghjkl;'zc",
+                        "qwertyuiop[]asdfghjkl;'zc", "qwertyuiop[]asdfghjkl;'zc")
         );
     }
 }
