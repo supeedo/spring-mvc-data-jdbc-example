@@ -12,7 +12,7 @@ public class FirstNameEmployeeValidator implements Validator<String> {
         ValidationResult vr = new ValidationResult();
         if (!firstName.matches(PATTERN)) {
             vr.setValid(false);
-            vr.inputMessage(ERROR_MESSAGE);
+            vr.addMessage(ERROR_MESSAGE);
         }
         return vr;
     }

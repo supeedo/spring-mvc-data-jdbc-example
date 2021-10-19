@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class ValidationResult {
     private boolean isValid = true;
-    private Set<String> messages = new HashSet<>();
+    private final Set<String> messages = new HashSet<>();
 
 
     public boolean isValid() {
@@ -20,11 +20,7 @@ public class ValidationResult {
         return messages;
     }
 
-    public void setMessages(Set<String> message) {
-        this.messages = message;
-    }
-
-    public void inputMessage(String message) {
+    public void addMessage(String message) {
         this.messages.add(message);
     }
 

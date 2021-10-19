@@ -4,9 +4,9 @@ import ru.study.model.Employee;
 
 import java.util.Optional;
 
-public class RoleEmployeeExtractorImpl implements Extractor<Employee> {
+public class RoleEmployeeExtractorImpl implements Extractor<Employee, String> {
     @Override
     public Optional<String> getValueFromFieldModel(Employee employee) throws RuntimeException {
-        return Optional.of(employee.getRole());
+        return employee == null ? Optional.empty() : Optional.of(employee.getRole());
     }
 }

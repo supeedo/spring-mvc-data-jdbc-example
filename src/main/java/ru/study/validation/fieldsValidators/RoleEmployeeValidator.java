@@ -12,7 +12,7 @@ public class RoleEmployeeValidator implements Validator<String> {
         ValidationResult vr = new ValidationResult();
         if (!role.matches(PATTERN)) {
             vr.setValid(false);
-            vr.inputMessage(ERROR_MESSAGE);
+            vr.addMessage(ERROR_MESSAGE);
         }
         return vr;
     }
