@@ -6,8 +6,16 @@ import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepositoryCSVImpl;
 import ru.study.service.EmployeeService;
 import ru.study.service.EmployeeServiceImpl;
-import ru.study.validation.EmployeeValidator;
+import ru.study.validation.Validator;
+import ru.study.validation.ValidatorImpl;
 import ru.study.validation.ValidationResult;
+import ru.study.validation.fieldsExtectors.Extractor;
+import ru.study.validation.fieldsExtectors.FirstNameEmployeeExtractorImpl;
+import ru.study.validation.fieldsExtectors.LastNameEmployeeExtractorImpl;
+import ru.study.validation.fieldsExtectors.RoleEmployeeExtractorImpl;
+import ru.study.validation.fieldsValidators.FirstNameEmployeeValidator;
+import ru.study.validation.fieldsValidators.LastNameEmployeeValidator;
+import ru.study.validation.fieldsValidators.RoleEmployeeValidator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -17,15 +25,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(urlPatterns = {"/add-employees"}, name = "addEmployee")
 public class AddEmployeeServlet extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(AddEmployeeServlet.class);
 
     private EmployeeService service;
-    private EmployeeValidator ev;
-
+    private ValidatorImpl<Employee, String> ev;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -57,7 +66,11 @@ public class AddEmployeeServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         this.service = new EmployeeServiceImpl(new EmployeeRepositoryCSVImpl());
-        this.ev = new EmployeeValidator();
+        Map<Extractor<Employee, String>, Validator<String>> validators = new HashMap<>();
+        validators.put(new FirstNameEmployeeExtractorImpl(), new FirstNameEmployeeValidator());
+        validators.put(new LastNameEmployeeExtractorImpl(), new LastNameEmployeeValidator());
+        validators.put(new RoleEmployeeExtractorImpl(), new RoleEmployeeValidator());
+        this.ev = new ValidatorImpl<>(validators);
     }
 
 }
