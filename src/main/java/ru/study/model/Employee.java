@@ -1,21 +1,19 @@
 package ru.study.model;
 
-import com.opencsv.bean.CsvBindByName;
-
 import java.util.Objects;
 
 public class Employee implements Model {
 
-    @CsvBindByName(column = "id")
+//    @CsvBindByName(column = "id")
     private long id;
 
-    @CsvBindByName(column = "firstName")
+//    @CsvBindByName(column = "firstName")
     private String firstName;
 
-    @CsvBindByName(column = "lastName")
+//    @CsvBindByName(column = "lastName")
     private String lastName;
 
-    @CsvBindByName(column = "role")
+//    @CsvBindByName(column = "role")
     private String role;
 
     public Employee() {
