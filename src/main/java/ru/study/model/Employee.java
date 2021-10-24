@@ -1,19 +1,24 @@
 package ru.study.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.Objects;
 
+@Table("EMPLOYEES")
 public class Employee implements Model {
 
-//    @CsvBindByName(column = "id")
-    private long id;
+    @Id
+    private Long id;
 
-//    @CsvBindByName(column = "firstName")
+    @Column("FIRST_NAME")
     private String firstName;
 
-//    @CsvBindByName(column = "lastName")
+    @Column("LAST_NAME")
     private String lastName;
 
-//    @CsvBindByName(column = "role")
+    @Column
     private String role;
 
     public Employee() {

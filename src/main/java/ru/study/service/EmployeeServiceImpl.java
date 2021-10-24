@@ -2,41 +2,32 @@ package ru.study.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.study.exceptions.ResourceException;
 import ru.study.model.Employee;
-import ru.study.repository.EmployeeRepository;
+import ru.study.repository.EmployeeRepo;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 
+    private final EmployeeRepo employeeRepo;
 
-    public EmployeeServiceImpl() {
-
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
+        this.employeeRepo = employeeRepo;
     }
 
     public List<Employee> getAllEmp() {
         return null;
     }
 
-    @Override
-    public List<Employee> getEmpByRole(final String role) {
-//        logger.debug("Запрос по роли: {}", role);
-//        return empRepo.getListOfModel()
-//                .stream()
-//                .filter(x -> x.getRole().equals(role))
-//                .collect(Collectors.toList());
-        return null;
-    }
 
     @Override
-    public Employee getEmpById(final long id) throws ResourceException {
+    public Employee getEmpById(final Long id) throws ResourceException {
 //        logger.debug("Запрос по id: {}", id);
 //        return empRepo.getListOfModel()
 //                .stream()
