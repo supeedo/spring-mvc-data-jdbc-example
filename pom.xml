@@ -109,12 +109,16 @@
       <artifactId>slf4j-api</artifactId>
       <version>${slf4j-api.version}</version>
     </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <version>1.4.200</version>
-      <scope>compile</scope>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.3.0</version>
     </dependency>
+
+
 
   </dependencies>
 

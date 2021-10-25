@@ -1,25 +1,19 @@
 package ru.study.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.Table;
 
 import java.util.Objects;
 
-@Table("EMPLOYEES")
-public class Employee implements Model {
+public class Employee {
 
     @Id
     private Long id;
 
-    @Column("FIRST_NAME")
     private String firstName;
 
-    @Column("LAST_NAME")
     private String lastName;
 
-    @Column
-    private String role;
+    private String employeeRoleId;
 
     public Employee() {
     }
@@ -28,7 +22,7 @@ public class Employee implements Model {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.role = role;
+        this.employeeRoleId = role;
     }
 
     public long getId() {
@@ -43,11 +37,11 @@ public class Employee implements Model {
         return lastName;
     }
 
-    public String getRole() {
-        return role;
+    public String getEmployeeRoleId() {
+        return employeeRoleId;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -59,8 +53,8 @@ public class Employee implements Model {
         this.lastName = lastName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setEmployeeRoleId(String employeeRoleId) {
+        this.employeeRoleId = employeeRoleId;
     }
 
     @Override
@@ -69,7 +63,7 @@ public class Employee implements Model {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role='" + role + '\'' +
+                ", role='" + employeeRoleId + '\'' +
                 '}';
     }
 
@@ -78,12 +72,12 @@ public class Employee implements Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee that = (Employee) o;
-        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(role, that.role);
+        return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(employeeRoleId, that.employeeRoleId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, role);
+        return Objects.hash(id, firstName, lastName, employeeRoleId);
     }
 
 }

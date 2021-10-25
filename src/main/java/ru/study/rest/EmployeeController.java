@@ -27,7 +27,7 @@ public class EmployeeController {
 
     @GetMapping("/{id}")
     Employee getEmployee(@PathVariable final Long id) {
-        return null;
+        return employeeService.getEmployeeById(id);
     }
 
     @PatchMapping

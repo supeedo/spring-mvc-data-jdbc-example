@@ -4,10 +4,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.study.exceptions.ResourceException;
+import org.springframework.transaction.annotation.Transactional;
 import ru.study.model.Employee;
 import ru.study.repository.EmployeeRepo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -17,36 +20,46 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepo employeeRepo;
 
     @Autowired
-    public EmployeeServiceImpl(EmployeeRepo employeeRepo) {
+    public EmployeeServiceImpl(final EmployeeRepo employeeRepo) {
         this.employeeRepo = employeeRepo;
     }
 
-    public List<Employee> getAllEmp() {
-        return null;
+    @Transactional(readOnly = true)
+    @Override
+    public List<Employee> getAllEmployees() {
+        return new ArrayList<>((Collection<? extends Employee>) employeeRepo.findAll());
     }
 
-
+    @Transactional(readOnly = true)
     @Override
-    public Employee getEmpById(final Long id) throws ResourceException {
-//        logger.debug("Запрос по id: {}", id);
-//        return empRepo.getListOfModel()
-//                .stream()
-//                .filter(x -> x.getId() == id)
-//                .findAny()
-//                .orElse(new Employee(0, "", "", ""));
-        return null;
+    public Employee getEmployeeById(final Long id) {
+        return employeeRepo.findById(id).orElseThrow(() -> new RuntimeException("Employee not found"));
     }
 
+    @Transactional
     @Override
-    public void addEmp(Employee employee) {
-//        logger.debug("Добавлен объект: {}", employee);
-//        AtomicLong id = new AtomicLong();
-//        List<Employee> employees = empRepo.getListOfModel();
-//        employees.stream()
-//                .max(Comparator.comparing(Employee::getId))
-//                .ifPresent(x -> id.set(x.getId() + 1));
-//        employee.setId(id.get());
-//        employees.add(employee);
-//        empRepo.setListOfModel(employees);
+    public void deleteEmployeeById(final Long id) {
+        employeeRepo.deleteById(id);
+    }
+
+    @Transactional
+    @Override
+    public void createNewEmployee(final Employee employee) {
+        employeeRepo.save(employee);
+    }
+
+    @Transactional
+    @Override
+    public void updateEmployee(final Employee employee) {
+        Employee emp = employeeRepo.findById(employee.getId()).orElseThrow(() -> new RuntimeException("Book not found"));
+        emp.setFirstName(employee.getFirstName());
+        emp.setLastName(employee.getLastName());
+        emp.setEmployeeRoleId(employee.getEmployeeRoleId());
+    }
+
+    @Transactional
+    @Override
+    public void saveEmployee(final Employee employee) {
+        employeeRepo.save(employee);
     }
 }

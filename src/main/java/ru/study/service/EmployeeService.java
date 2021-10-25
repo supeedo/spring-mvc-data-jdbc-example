@@ -5,9 +5,16 @@ import ru.study.model.Employee;
 import java.util.List;
 
 public interface EmployeeService {
-    List<Employee> getAllEmp();
 
-    Employee getEmpById(Long id);
+    List<Employee> getAllEmployees();
 
-    void addEmp(Employee employee);
+    Employee getEmployeeById(Long id);
+
+    void deleteEmployeeById(Long id);
+
+    void createNewEmployee(Employee employee);
+
+    void updateEmployee(Employee employee);
+
+    void saveEmployee(Employee employee);
 }
